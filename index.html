@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7c7d9" />
+  <title>Undangan | Grand Opening Clinic 2bShine</title>
+  <meta name="description" content="Undangan Grand Opening Clinic 2bShine — Intimate Brand Experience. RSVP tersimpan ke Google Sheet, QR ticket, dan check-in panitia." />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Decorative background -->
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <!-- Top bar -->
+  <header class="topbar glass">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="#top" aria-label="2bShine Home">
+        <span class="brand__mark" aria-hidden="true">✦</span>
+        <span class="brand__name">2bShine Clinic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigasi">
+        <a href="#detail">Detail</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#rsvp">RSVP</a>
+        <a href="#lokasi">Lokasi</a>
+      </nav>
+
+      <button class="iconBtn" id="themeToggle" type="button" aria-label="Toggle mode">
+        <span aria-hidden="true">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__card glass">
+        <div class="kicker">
+          <span class="chip">Grand Opening</span>
+          <span class="chip chip--soft">Intimate Brand Experience</span>
+        </div>
+
+        <h1 class="title">
+          You’re Invited ✨<br />
+          <span class="title__accent">Clinic 2bShine</span>
+        </h1>
+
+        <p class="subtitle">
+          Sebuah pengalaman yang intimate, hangat, dan playful — kenalan lebih dekat dengan clinic, treatment,
+          dan “glow culture” 2bShine bareng tamu pilihan.
+        </p>
+
+        <div class="hero__meta">
+          <div class="meta glass2">
+            <div class="meta__label">Hari / Tanggal</div>
+            <div class="meta__value" id="eventDateText">-</div>
+          </div>
+          <div class="meta glass2">
+            <div class="meta__label">Jam</div>
+            <div class="meta__value" id="eventTimeText">-</div>
+          </div>
+          <div class="meta glass2">
+            <div class="meta__label">Lokasi</div>
+            <div class="meta__value" id="eventVenueText">-</div>
+          </div>
+        </div>
+
+        <div class="ctaRow">
+          <a class="btn btn--primary" href="#rsvp" id="btnOpenRsvp">
+            RSVP Sekarang
+            <span aria-hidden="true">→</span>
+          </a>
+          <button class="btn btn--ghost" id="btnAddCalendar" type="button">
+            Add to Calendar
+            <span aria-hidden="true">＋</span>
+          </button>
+          <button class="btn btn--ghost" id="btnShare" type="button">
+            Share
+            <span aria-hidden="true">⤴</span>
+          </button>
+        </div>
+
+        <div class="countdown glass2" role="group" aria-label="Countdown menuju acara">
+          <div class="cdItem">
+            <div class="cdNum" id="cdDays">--</div>
+            <div class="cdLabel">Hari</div>
+          </div>
+          <div class="cdItem">
+            <div class="cdNum" id="cdHours">--</div>
+            <div class="cdLabel">Jam</div>
+          </div>
+          <div class="cdItem">
+            <div class="cdNum" id="cdMins">--</div>
+            <div class="cdLabel">Menit</div>
+          </div>
+          <div class="cdItem">
+            <div class="cdNum" id="cdSecs">--</div>
+            <div class="cdLabel">Detik</div>
+          </div>
+        </div>
+
+        <p class="note">
+          *Dress code: <strong>Soft Pink / Nude / White</strong> (comfortable & classy).
+        </p>
+      </div>
+
+      <aside class="hero__side glass">
+        <div class="side__title">Experience Highlights</div>
+        <ul class="bullets">
+          <li>Welcome drink + sweet bites</li>
+          <li>Clinic tour & mini consultation corner</li>
+          <li>Intimate sharing: story di balik 2bShine</li>
+          <li>Photo moment: “Glass Glow” backdrop</li>
+          <li>Special voucher untuk tamu undangan</li>
+        </ul>
+
+        <div class="side__divider"></div>
+
+        <div class="host">
+          <div class="host__badge" aria-hidden="true">♡</div>
+          <div>
+            <div class="host__label">Hosted by</div>
+            <div class="host__name">2bShine Clinic Team</div>
+          </div>
+        </div>
+
+        <button class="btn btn--small btn--primary" id="btnPlayMusic" type="button">
+          Play Music
+          <span aria-hidden="true">♫</span>
+        </button>
+
+        <audio id="bgm" loop>
+          <!-- OPTIONAL: taruh file di assets/audio/bgm.mp3 lalu uncomment -->
+          <!-- <source src="assets/audio/bgm.mp3" type="audio/mpeg" /> -->
+        </audio>
+
+        <div class="miniHelp glass2">
+          <div class="miniHelp__title">Mode Panitia</div>
+          <div class="miniHelp__text">
+            Buka halaman <strong>checkin.html</strong> untuk scan QR tamu dan otomatis centang hadir di Google Sheet.
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Detail -->
+    <section id="detail" class="section">
+      <div class="sectionHead">
+        <h2>Detail Acara</h2>
+        <p>Semua info penting, singkat, jelas, dan enak dibaca.</p>
+      </div>
+
+      <div class="grid2">
+        <article class="card glass">
+          <h3>What to Expect</h3>
+          <p>
+            Ini bukan acara yang “ramai-rame banget”. Kita bikin intimate supaya kamu bisa menikmati,
+            ngobrol, dan explore treatment dengan nyaman.
+          </p>
+          <div class="tagRow">
+            <span class="tag">Intimate</span>
+            <span class="tag">Fun</span>
+            <span class="tag">Premium casual</span>
+          </div>
+        </article>
+
+        <article class="card glass">
+          <h3>Special for Guests</h3>
+          <ul class="list">
+            <li>Voucher eksklusif grand opening</li>
+            <li>Mini skin check (limited slot)</li>
+            <li>Goodie bag (selama persediaan ada)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Agenda -->
+    <section id="agenda" class="section">
+      <div class="sectionHead">
+        <h2>Agenda</h2>
+        <p>Flow acara yang smooth biar kamu bisa atur waktu datang.</p>
+      </div>
+
+      <div class="timeline glass">
+        <div class="tItem">
+          <div class="tTime">15:00</div>
+          <div class="tContent">
+            <div class="tTitle">Arrival & Welcome Drink</div>
+            <div class="tDesc">Registrasi tamu, santai, foto-foto dulu.</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tTime">15:45</div>
+          <div class="tContent">
+            <div class="tTitle">Clinic Tour</div>
+            <div class="tDesc">Kenalan area treatment, SOP, dan experience corner.</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tTime">16:30</div>
+          <div class="tContent">
+            <div class="tTitle">Intimate Brand Sharing</div>
+            <div class="tDesc">Cerita singkat brand + values + “why we do this”.</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tTime">17:15</div>
+          <div class="tContent">
+            <div class="tTitle">Mini Consultation Corner</div>
+            <div class="tDesc">Slot terbatas — first come first served.</div>
+          </div>
+        </div>
+
+        <div class="tItem">
+          <div class="tTime">18:15</div>
+          <div class="tContent">
+            <div class="tTitle">Photo Moment & Closing</div>
+            <div class="tDesc">Backdrop “Glass Glow”, last call untuk voucher.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="section">
+      <div class="sectionHead">
+        <h2>RSVP</h2>
+        <p>Konfirmasi kehadiran kamu. Data otomatis masuk ke Google Sheet + QR ticket muncul setelah submit.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card glass">
+          <h3>Confirm Attendance</h3>
+          <p class="muted">
+            Isi form ini. Setelah submit, kamu akan dapat <strong>Ticket ID</strong> + <strong>QR</strong> untuk check-in.
+          </p>
+
+          <form class="form" id="rsvpForm">
+            <div class="field">
+              <label for="name">Nama</label>
+              <input id="name" name="name" type="text" placeholder="Nama kamu" required />
+            </div>
+
+            <div class="field">
+              <label for="whatsapp">WhatsApp</label>
+              <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" placeholder="08xxxxxxxxxx" required />
+            </div>
+
+            <div class="field">
+              <label for="guests">Jumlah tamu</label>
+              <select id="guests" name="guests">
+                <option value="1">1 orang</option>
+                <option value="2">2 orang</option>
+                <option value="3">3 orang</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="note">Catatan (opsional)</label>
+              <textarea id="note" name="note" rows="3" placeholder="Alergi makanan / request khusus / lainnya"></textarea>
+            </div>
+
+            <div class="formActions">
+              <button class="btn btn--primary" type="submit" id="btnSubmitRsvp">
+                Submit RSVP
+                <span aria-hidden="true">✓</span>
+              </button>
+              <button class="btn btn--ghost" type="button" id="btnCopyRsvp">
+                Copy RSVP Text
+                <span aria-hidden="true">⧉</span>
+              </button>
+            </div>
+
+            <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          </form>
+
+          <div id="rsvpSuccess" class="successBox glass2" aria-live="polite">
+            <div class="successTitle">RSVP sukses ✨</div>
+            <div class="successSub">
+              Ticket ID: <strong id="successTicket">-</strong>
+            </div>
+            <div class="qrWrap">
+              <div id="qrBox" aria-label="QR Ticket"></div>
+              <div class="qrHints">
+                <div class="qrHintTitle">Simpan QR ini</div>
+                <div class="qrHintText">Tunjukkan saat check-in. Panitia scan → Google Sheet auto centang hadir.</div>
+                <div class="qrBtnRow">
+                  <button class="btn btn--ghost" type="button" id="btnDownloadQr">Download QR</button>
+                  <button class="btn btn--ghost" type="button" id="btnCopyTicket">Copy Ticket ID</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3>Quick Info</h3>
+          <div class="infoRow">
+            <div class="infoIcon" aria-hidden="true">✿</div>
+            <div>
+              <div class="infoTitle">Tema</div>
+              <div class="infoText">Intimate Brand Experience</div>
+            </div>
+          </div>
+
+          <div class="infoRow">
+            <div class="infoIcon" aria-hidden="true">⌁</div>
+            <div>
+              <div class="infoTitle">Dress Code</div>
+              <div class="infoText">Soft Pink / Nude / White</div>
+            </div>
+          </div>
+
+          <div class="infoRow">
+            <div class="infoIcon" aria-hidden="true">⏳</div>
+            <div>
+              <div class="infoTitle">Durasi</div>
+              <div class="infoText">± 4 jam (come & go friendly)</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="muted">
+            Kalau kamu berhalangan, tetap boleh RSVP “Tidak hadir” ya — biar data kita rapi.
+          </p>
+
+          <button class="btn btn--primary" id="btnOpenModal" type="button">
+            RSVP via Modal
+            <span aria-hidden="true">↗</span>
+          </button>
+
+          <div class="miniHelp glass2">
+            <div class="miniHelp__title">Integrasi Google Sheet</div>
+            <div class="miniHelp__text">
+              Jangan lupa isi <strong>API_URL</strong> di <code>js/config.js</code> setelah deploy Apps Script.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lokasi -->
+    <section id="lokasi" class="section">
+      <div class="sectionHead">
+        <h2>Lokasi</h2>
+        <p>Tap untuk buka Google Maps. Kamu juga bisa embed map beneran.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card glass">
+          <h3>Alamat</h3>
+          <p class="muted" id="addressText">-</p>
+
+          <div class="mapBox glass2">
+            <div class="mapPlaceholder" aria-hidden="true">
+              <div class="mapPin">📍</div>
+              <div class="mapText">Map Preview</div>
+              <div class="mapSub">Replace dengan iframe Google Maps kalau mau</div>
+            </div>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn btn--primary" id="btnMaps" href="#" target="_blank" rel="noopener">
+              Open in Google Maps
+              <span aria-hidden="true">↗</span>
+            </a>
+            <button class="btn btn--ghost" id="btnCopyAddress" type="button">
+              Copy Address
+              <span aria-hidden="true">⧉</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="card glass">
+          <h3>FAQ</h3>
+          <details class="faq glass2">
+            <summary>Apakah acara ini berbayar?</summary>
+            <p>Tidak. Ini acara undangan. RSVP dulu ya supaya slotnya aman.</p>
+          </details>
+
+          <details class="faq glass2">
+            <summary>Boleh ajak teman?</summary>
+            <p>Boleh sesuai kuota “Jumlah tamu” saat RSVP.</p>
+          </details>
+
+          <details class="faq glass2">
+            <summary>Kalau telat datang gimana?</summary>
+            <p>Gapapa. Datang aja — flow-nya dibuat come & go friendly.</p>
+          </details>
+
+          <details class="faq glass2">
+            <summary>Parking tersedia?</summary>
+            <p>Isi sesuai kondisi venue. (Nanti kamu update di sini.)</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer glass">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__title">2bShine Clinic</div>
+          <div class="footer__sub">Grand Opening — Intimate Brand Experience</div>
+        </div>
+        <div class="footer__actions">
+          <button class="btn btn--ghost" id="btnScrollTop" type="button">Back to top ↑</button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- RSVP Modal -->
+  <dialog class="modal glass" id="rsvpModal" aria-label="RSVP Modal">
+    <div class="modal__head">
+      <div>
+        <div class="modal__title">RSVP (Quick)</div>
+        <div class="modal__sub">Cepat, simple, tetap elegan.</div>
+      </div>
+      <button class="iconBtn" id="btnCloseModal" type="button" aria-label="Tutup modal">✕</button>
+    </div>
+
+    <form class="form" id="rsvpModalForm" method="dialog">
+      <div class="field">
+        <label for="mName">Nama</label>
+        <input id="mName" name="mName" type="text" placeholder="Nama kamu" required />
+      </div>
+
+      <div class="field">
+        <label for="mWhatsapp">WhatsApp</label>
+        <input id="mWhatsapp" name="mWhatsapp" type="tel" inputmode="tel" placeholder="08xxxxxxxxxx" required />
+      </div>
+
+      <div class="field">
+        <label for="mPresence">Kehadiran</label>
+        <select id="mPresence" name="mPresence">
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak hadir">Tidak hadir</option>
+        </select>
+      </div>
+
+      <div class="formActions">
+        <button class="btn btn--primary" value="confirm" type="submit">
+          Konfirmasi
+          <span aria-hidden="true">✓</span>
+        </button>
+        <button class="btn btn--ghost" value="cancel" type="button" id="btnCancelDialog">
+          Batal
+        </button>
+      </div>
+
+      <p class="muted mini">
+        Tips: setelah submit, kamu akan dapat Ticket ID + QR untuk check-in.
+      </p>
+    </form>
+  </dialog>
+
+  <!-- QR generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

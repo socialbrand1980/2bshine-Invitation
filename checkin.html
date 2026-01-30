@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7c7d9" />
+  <title>Check-in Panitia | 2bShine</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="topbar glass">
+    <div class="wrap topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark" aria-hidden="true">✦</span>
+        <span class="brand__name">2bShine Check-in</span>
+      </a>
+      <div class="navHint">Scan QR → Sheet auto “HADIR” ✅</div>
+      <button class="iconBtn" id="themeToggle" type="button" aria-label="Toggle mode">
+        <span aria-hidden="true">☾</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section">
+      <div class="sectionHead">
+        <h2>Scanner Panitia</h2>
+        <p>Pastikan <strong>API_URL</strong> sudah diisi di <code>js/config.js</code>. Halaman ini harus dibuka via <strong>HTTPS</strong> agar kamera bisa aktif di HP.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card glass">
+          <h3>Camera Scanner</h3>
+          <div class="scannerBox glass2">
+            <div id="reader" class="reader"></div>
+          </div>
+          <div class="scannerActions">
+            <button class="btn btn--ghost" type="button" id="btnStart">Start</button>
+            <button class="btn btn--ghost" type="button" id="btnStop">Stop</button>
+          </div>
+          <p class="muted mini">Tips: gunakan kamera belakang. Arahkan QR ke kotak scan.</p>
+        </div>
+
+        <div class="card glass">
+          <h3>Status</h3>
+          <div id="log" class="logBox glass2">Ready.</div>
+
+          <div class="divider"></div>
+
+          <h3>Manual Check-in (Backup)</h3>
+          <p class="muted mini">Kalau kamera bermasalah, paste Ticket ID di sini.</p>
+
+          <div class="form">
+            <div class="field">
+              <label for="manualTicket">Ticket ID</label>
+              <input id="manualTicket" type="text" placeholder="Contoh: T-1A2B3C4D" />
+            </div>
+            <button class="btn btn--primary" type="button" id="btnManualCheckin">
+              Check-in Manual
+              <span aria-hidden="true">✓</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer glass">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__title">2bShine Clinic</div>
+          <div class="footer__sub">Panitia Check-in</div>
+        </div>
+        <div class="footer__actions">
+          <a class="btn btn--ghost" href="index.html">← Kembali ke Undangan</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script src="js/config.js"></script>
+  <script src="js/checkin.js"></script>
+</body>
+</html>
