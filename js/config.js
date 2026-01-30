@@ -5,6 +5,8 @@
 // 1) Deploy Apps Script sebagai Web App, lalu paste URL-nya di sini
 // Contoh: https://script.google.com/macros/s/XXXX/exec
 window.API_URL = "https://script.google.com/macros/s/AKfycbzWBNy0-A3-1YMcXYzsUcwIAryStzb3QCJ-kUYIEnzAB8NKjGBc-LLUAOlzwE2i7fhj/exec";
+// Panitia PIN (ganti sesukamu)
+window.CHECKIN_PIN = "0215"; // contoh
 
 
 // 2) Detail event (WIB)

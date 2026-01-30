@@ -25,7 +25,7 @@
         <span class="brand__mark" aria-hidden="true">✦</span>
         <span class="brand__name">2bShine Check-in</span>
       </a>
-      <div class="navHint">Scan QR → Sheet auto “HADIR” ✅</div>
+      <div class="navHint">Scan QR ✅</div>
       <button class="iconBtn" id="themeToggle" type="button" aria-label="Toggle mode">
         <span aria-hidden="true">☾</span>
       </button>
@@ -36,7 +36,7 @@
     <section class="section">
       <div class="sectionHead">
         <h2>Scanner Panitia</h2>
-        <p>Pastikan <strong>API_URL</strong> sudah diisi di <code>js/config.js</code>. Halaman ini harus dibuka via <strong>HTTPS</strong> agar kamera bisa aktif di HP.</p>
+        <!-- <p>Pastikan <strong>API_URL</strong> sudah diisi di <code>js/config.js</code>. Halaman ini harus dibuka via <strong>HTTPS</strong> agar kamera bisa aktif di HP.</p> -->
       </div>
 
       <div class="grid2">
@@ -49,7 +49,7 @@
             <button class="btn btn--ghost" type="button" id="btnStart">Start</button>
             <button class="btn btn--ghost" type="button" id="btnStop">Stop</button>
           </div>
-          <p class="muted mini">Tips: gunakan kamera belakang. Arahkan QR ke kotak scan.</p>
+          <p class="muted mini">Gunakan kamera belakang. Arahkan QR ke kotak scan.</p>
         </div>
 
         <div class="card glass">
@@ -91,5 +91,36 @@
   <script src="https://unpkg.com/html5-qrcode"></script>
   <script src="js/config.js"></script>
   <script src="js/checkin.js"></script>
+
+  <!-- PIN Modal -->
+<dialog id="pinModal" class="modal">
+  <form method="dialog" class="modalCard" id="pinForm">
+    <h3 class="modalTitle">Panitia Login</h3>
+    <p class="modalText">Masukkan PIN untuk membuka halaman check-in.</p>
+
+    <label class="modalLabel" for="pinInput">PIN</label>
+    <input id="pinInput" class="modalInput" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="••••" required />
+
+    <div class="modalActions">
+      <button id="pinSubmit" class="btnPrimary" value="ok">Masuk</button>
+    </div>
+
+    <p id="pinError" class="modalError" aria-live="polite"></p>
+  </form>
+</dialog>
+
+<!-- Result Modal -->
+<dialog id="resultModal" class="modal">
+  <div class="modalCard">
+    <h3 id="resultTitle" class="modalTitle">Berhasil ✅</h3>
+    <p id="resultText" class="modalText">Check-in berhasil.</p>
+
+    <div class="modalActions">
+      <button id="resultClose" class="btnPrimary">OK</button>
+    </div>
+  </div>
+</dialog>
+
+
 </body>
 </html>

@@ -1,6 +1,85 @@
 // 2bShine Check-in — Scan QR (Ticket ID) -> update Google Sheet (JSONP, no fetch)
 const API_URL = window.API_URL;
 
+const CHECKIN_PIN = window.CHECKIN_PIN || "";
+const AUTH_KEY = "checkin_auth_ok";
+
+function isAuthed(){
+  return sessionStorage.getItem(AUTH_KEY) === "1";
+}
+
+function setAuthed(){
+  sessionStorage.setItem(AUTH_KEY, "1");
+}
+
+function showPinGate(){
+  const modal = document.querySelector("#pinModal");
+  const input = document.querySelector("#pinInput");
+  const err = document.querySelector("#pinError");
+  const form = document.querySelector("#pinForm");
+
+  if(!modal) return;
+
+  // kalau PIN belum diset, skip gate
+  if(!CHECKIN_PIN){
+    setAuthed();
+    return;
+  }
+
+  if(isAuthed()) return;
+
+  err.textContent = "";
+  modal.showModal();
+  setTimeout(() => input?.focus(), 50);
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = String(input?.value || "").trim();
+
+    if(val === CHECKIN_PIN){
+      setAuthed();
+      modal.close();
+      err.textContent = "";
+      input.value = "";
+      // auto start scanner setelah login
+      startScanner?.();
+    }else{
+      err.textContent = "PIN salah. Coba lagi ya.";
+      input.value = "";
+      input?.focus();
+    }
+  });
+}
+
+function showResultPopup(title, text){
+  const modal = document.querySelector("#resultModal");
+  const t = document.querySelector("#resultTitle");
+  const p = document.querySelector("#resultText");
+  const close = document.querySelector("#resultClose");
+
+  if(!modal) return;
+
+  t.textContent = title;
+  p.textContent = text;
+
+  // jika sedang kebuka, refresh isinya
+  if(!modal.open) modal.showModal();
+
+  const onClose = () => {
+    try{ modal.close(); }catch{}
+    close?.removeEventListener("click", onClose);
+  };
+
+  close?.addEventListener("click", onClose);
+
+  // auto close (optional)
+  clearTimeout(showResultPopup._t);
+  showResultPopup._t = setTimeout(() => {
+    if(modal.open) onClose();
+  }, 1600);
+}
+
+
 const $ = (sel) => document.querySelector(sel);
 
 function setLog(msg, ok=null){
@@ -89,10 +168,13 @@ async function handleTicket(ticket_id){
     }
 
     if(data.already){
-      setLog("SUDAH HADIR ✅ " + data.nama + " (" + ticket_id + ")", true);
+  setLog("SUDAH HADIR ✅ " + data.nama + " (" + ticket_id + ")", true);
+  showResultPopup("Sudah Hadir ✅", `${data.nama} (${ticket_id})`);
     }else{
-      setLog("CHECK-IN BERHASIL ✅ " + data.nama + " (" + ticket_id + ")", true);
+  setLog("CHECK-IN BERHASIL ✅ " + data.nama + " (" + ticket_id + ")", true);
+  showResultPopup("Berhasil ✅", `${data.nama} (${ticket_id})`);
     }
+
   }catch(e){
     setLog("Error: " + e.message, false);
   }finally{
@@ -147,12 +229,19 @@ async function stopScanner(){
   }
 }
 
-$("#btnStart")?.addEventListener("click", startScanner);
+$("#btnStart")?.addEventListener("click", () => {
+  if(!isAuthed()){ showPinGate(); return; }
+  startScanner();
+});
+
 $("#btnStop")?.addEventListener("click", stopScanner);
 
+
 $("#btnManualCheckin")?.addEventListener("click", () => {
+  if(!isAuthed()){ showPinGate(); return; }
   handleTicket($("#manualTicket")?.value);
 });
 
-// auto start on load
-startScanner();
+// auto start on load (setelah login)
+showPinGate();
+if(isAuthed()) startScanner();

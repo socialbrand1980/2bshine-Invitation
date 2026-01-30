@@ -429,10 +429,36 @@ input:focus, select:focus, textarea:focus{
 .faq p{ margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
 
 /* Footer */
-.footer{ margin: 26px 0 40px; padding: 16px 18px; }
-.footer__inner{ display:flex; justify-content:space-between; align-items:center; gap: 10px; flex-wrap:wrap; }
-.footer__title{ font-weight: 1000; letter-spacing:.2px; }
-.footer__sub{ color: var(--muted); font-size: 13px; margin-top: 4px; }
+.footer{
+  margin: 26px 0 56px; /* nambah space bawah biar ga mepet layar */
+  padding: 18px 18px 22px;
+}
+
+.footer__inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start; /* penting biar title & sub ga ketarik tengah */
+  gap: 12px;
+  flex-wrap:wrap;
+}
+
+.footer__title{
+  font-weight: 700; /* 1000 terlalu berat di mobile */
+  letter-spacing:.2px;
+  margin-bottom: 8px; /* 👈 INI KUNCINYA */
+}
+
+.footer__sub{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px){
+  .footer{
+    margin-bottom: 72px; /* aman dari bottom bar Safari */
+  }
+}
 
 /* Modal */
 .modal{
@@ -478,4 +504,103 @@ input:focus, select:focus, textarea:focus{
   .countdown{ grid-template-columns: repeat(2, 1fr); }
   .grid2{ grid-template-columns: 1fr; }
   .btn{ width:100%; justify-content:center; }
+}
+
+/* ===== Modal (PIN + Result) ===== */
+.modal::backdrop{
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+}
+
+.modal{
+  border: none;
+  padding: 0;
+  background: transparent;
+}
+
+.modalCard{
+  width: min(420px, calc(100vw - 32px));
+  border-radius: 20px;
+  padding: 18px;
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(255,255,255,.55);
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+  backdrop-filter: blur(14px);
+}
+
+.modalTitle{
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.modalText{
+  margin: 0 0 14px;
+  opacity: .9;
+}
+
+.modalLabel{
+  display: block;
+  font-size: 12px;
+  opacity: .85;
+  margin-bottom: 6px;
+}
+
+.modalInput{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.75);
+  outline: none;
+  font-size: 16px;
+}
+
+.modalActions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btnPrimary{
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255, 189, 214, .95); /* pink pastel */
+  color: #1f1f1f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modalError{
+  margin: 10px 0 0;
+  color: #a3002d;
+  font-size: 12px;
+  min-height: 16px;
+}
+
+/* ===== Premium glass text ===== */
+.title__accent{
+  font-weight: 800;
+  letter-spacing: -0.02em;
+
+  background: linear-gradient(180deg, #ff63a6 0%, #ff1f6d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 2px 6px rgba(255,255,255,.75),
+    0 12px 28px rgba(255,31,109,.45);
+}
+
+/* Force space after the whole page content (prevents footer sticking to bottom) */
+main.wrap{
+  padding-bottom: 12px;
+}
+
+/* iPhone safe area */
+@supports (padding: max(0px)) {
+  main.wrap{
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
 }
