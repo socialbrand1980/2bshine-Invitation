@@ -15,6 +15,6 @@ window.EVENT = {
   startISO: "2026-02-15T13:00:00+07:00",
   endISO: "2026-02-15T18:00:00+07:00",
   venue: "Sky Lounge",
-  address: "(Isi alamat lengkap di sini) — Kota, Provinsi",
+  address: "The Jogja Hotel & Conference Center",
   mapsQuery: "https://maps.app.goo.gl/TnrdoLwR1P1aW4eL9"
 };

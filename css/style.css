@@ -585,8 +585,10 @@ input:focus, select:focus, textarea:focus{
   letter-spacing: -0.02em;
 
   background: linear-gradient(180deg, #ff63a6 0%, #ff1f6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background-clip: text;            /* standard */
+  -webkit-background-clip: text;    /* Safari */
+  color: transparent;               /* standard */
+  -webkit-text-fill-color: transparent; /* Safari */
 
   text-shadow:
     0 2px 6px rgba(255,255,255,.75),
