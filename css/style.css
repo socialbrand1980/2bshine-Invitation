@@ -608,3 +608,7 @@ main.wrap{
     padding-bottom: max(12px, env(safe-area-inset-bottom));
   }
 }
+
+.agendajudul {
+  padding-left: 9px;
+}
