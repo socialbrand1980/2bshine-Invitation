@@ -251,18 +251,103 @@ function setupCopyAddress(){
 function setupMusic(){
   const audio = $("#bgm");
   const btn = $("#btnPlayMusic");
+  const hintId = "soundHint";
 
+  function showEnableHint(){
+    let hint = document.getElementById(hintId);
+    if(!hint){
+      hint = document.createElement('div');
+      hint.id = hintId;
+      hint.className = 'soundHint';
+      hint.textContent = 'Tap anywhere untuk mengaktifkan suara';
+      document.body.appendChild(hint);
+    }
+    hint.style.display = 'block';
+  }
+  function hideEnableHint(){
+    const hint = document.getElementById(hintId);
+    if(hint) hint.style.display = 'none';
+  }
+
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+  async function attemptAutoplay(){
+    if(!audio || (!audio.src && audio.children.length === 0)){
+      showToast("Tambahkan file audio di assets/audio/music.mp3 di folder assets/audio/.");
+      return false;
+    }
+
+    // try to play muted first (more likely to be allowed)
+    try{
+      audio.muted = true;
+      audio.volume = 0.001;
+      await audio.play();
+      // if play succeeded muted, try to unmute gracefully
+      try{
+        // give a moment and try to unmute; some browsers still block unmute
+        await sleep(400);
+        audio.muted = false;
+        // ramp up volume
+        for(let v = 0.05; v <= 0.8; v += 0.05){ audio.volume = v; await sleep(40); }
+        btn.innerHTML = `Pause Music <span aria-hidden="true">❚❚</span>`;
+        hideEnableHint();
+        return true;
+      }catch(e){
+        // unmute blocked; leave muted but consider autoplay success
+        showEnableHint();
+        btn.innerHTML = `Play Music <span aria-hidden="true">♫</span>`;
+        return true;
+      }
+    }catch(e){
+      // autoplay entirely blocked
+      showEnableHint();
+      showToast('Autoplay diblokir. Tap layar atau tekan Play untuk mengaktifkan audio.');
+      return false;
+    }
+  }
+
+  // If user interacts (first pointerdown), try to enable audio
+  function setupUserGestureUnlock(){
+    const onFirst = async () => {
+      document.removeEventListener('pointerdown', onFirst);
+      try{
+        if(audio.paused){
+          audio.muted = false;
+          await audio.play();
+        }else{
+          audio.muted = false;
+        }
+        // ramp volume
+        let target = 0.8;
+        for(let v = 0.05; v <= target; v += 0.05){ audio.volume = v; await sleep(40); }
+        btn.innerHTML = `Pause Music <span aria-hidden="true">❚❚</span>`;
+        hideEnableHint();
+      }catch(e){
+        showToast('Tidak bisa mengaktifkan audio otom. Silakan tekan tombol Play.');
+      }
+    };
+
+    document.addEventListener('pointerdown', onFirst, { once:true });
+  }
+
+  // init
+  setTimeout(() => { attemptAutoplay(); setupUserGestureUnlock(); }, 250);
+
+  // button behaviour
   btn.addEventListener("click", async () => {
     if(!audio || (!audio.src && audio.children.length === 0)){
-      showToast("Tambahkan file audio di assets/audio/bgm.mp3 lalu uncomment di index.html.");
+      showToast("Tambahkan file audio di assets/audio/music.mp3 di folder assets/audio/.");
       return;
     }
     if(audio.paused){
       try{
+        audio.muted = false;
         await audio.play();
         btn.innerHTML = `Pause Music <span aria-hidden="true">❚❚</span>`;
+        hideEnableHint();
       }catch(e){
-        showToast("Autoplay diblok browser. Tap lagi ya.");
+        showToast('Autoplay diblok browser. Tap layar dulu atau tekan lagi.');
+        showEnableHint();
       }
     }else{
       audio.pause();
