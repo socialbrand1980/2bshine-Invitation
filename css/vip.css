@@ -1,0 +1,99 @@
+/* VIP theme — Gold & Black Luxury overrides */
+:root{
+  --bg: #070607;
+  --text: #f8ecd0;
+  --muted: rgba(248,236,208,.72);
+  --glass: rgba(255,255,255,.03);
+  --glass2: rgba(255,255,255,.05);
+  --stroke: rgba(255,215,0,.12);
+  --shadow: 0 22px 60px rgba(0,0,0,.72);
+  --shadow2: 0 12px 36px rgba(0,0,0,.62);
+  /* override base pink vars so components relying on them use gold */
+  --pink: #ffd966;
+  --pink2: #ffd56b;
+}
+
+/* Decorative blobs replace to gold hues */
+.b1{ background: radial-gradient(circle at 30% 30%, #2b1a00, #7a5200); opacity:.9; filter: blur(56px); }
+.b2{ background: radial-gradient(circle at 60% 30%, #3e2600, #b8860b); opacity:.85; filter: blur(48px); }
+.b3{ background: radial-gradient(circle at 40% 40%, #1d1200, #ffd700); opacity:.72; filter: blur(64px); }
+
+/* Accent title — solid gold (no background rectangle) */
+.title__accent{
+  color: #ffd56b !important;
+  font-weight: 900;
+  text-shadow: 0 2px 8px rgba(0,0,0,.55);
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+
+/* Brand color */
+.brand__name{
+  color: #fffbde;
+  font-weight: 900;
+  text-shadow: 0 1px 0 rgba(0,0,0,.6), 0 8px 20px rgba(0,0,0,.55);
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: inline;
+}
+
+/* Ensure topbar sits above decorative blobs */
+.topbar{ z-index: 60; }
+
+/* Chips */
+.chip{ background: rgba(255,215,0,.06); color: var(--muted); border-color: rgba(255,215,0,.14); }
+.chip--soft{ background: rgba(255,215,0,.04); }
+
+/* Primary button — gold */
+.btn--primary{
+  background: linear-gradient(135deg, #ffd966, #d4a017);
+  color: #0b0b0b;
+  border-color: rgba(0,0,0,.08);
+}
+
+/* Hero side host badge */
+.host__badge{ background: linear-gradient(135deg, rgba(255,215,0,.14), rgba(255,215,0,.08)); border-color: rgba(255,215,0,.12); color: #fff; }
+
+/* Footer */
+.footer{ background: linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.12)); border-color: rgba(255,215,0,.06); }
+
+/* Minor tweaks for contrast */
+.infoRow{ background: rgba(255,255,255,.02); border-color: rgba(255,215,0,.06); }
+
+/* Override map placeholder style for visibility */
+.mapPlaceholder{ color: var(--muted); }
+
+/* Ensure inputs remain legible */
+input, select, textarea{ background: rgba(255,255,255,.03); color: var(--text); border-color: rgba(255,215,0,.06); }
+
+/* QR box subtle gold tint */
+#qrBox{ background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,215,0,.02)); border-color: rgba(255,215,0,.06); }
+
+/* Remove remaining pink accents and enforce gold theme */
+.tTime{ color: #ffd966 !important; }
+
+/* Apply gradient only when supported to avoid full background rectangles */
+@supports ((-webkit-background-clip: text) or (background-clip: text)){
+  .title__accent{
+    background: linear-gradient(90deg, #ffd56b, #f4d03f) !important;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent !important;
+    text-shadow: 0 10px 28px rgba(180,135,0,.12) !important;
+  }
+}
+
+
+/* modal / primary button fallback */
+.btnPrimary{ background: linear-gradient(135deg, #ffd966, #d4a017) !important; color: #0b0b0b !important; border-color: rgba(0,0,0,.08) !important; }
+
+/* hover / nav accents */
+.nav a:hover{ color: #ffefc4 !important; background: rgba(255,215,0,.04) !important; }
+
+/* chip soft stronger gold */
+.chip--soft{ background: rgba(255,215,0,.06) !important; }

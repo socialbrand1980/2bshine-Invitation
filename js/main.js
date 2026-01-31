@@ -216,8 +216,8 @@ function cryptoRandom(){
 function setupShare(){
   $("#btnShare").addEventListener("click", async () => {
     const shareData = {
-      title: "Undangan — 2bShine Clinic",
-      text: "Undangan Grand Opening Clinic 2bShine — Intimate Brand Experience",
+      title: (EVENT && EVENT.title) ? EVENT.title : "Undangan — 2bShine Clinic",
+      text: (EVENT && EVENT.title) ? `${EVENT.title} — ${EVENT.venue}` : "Undangan Grand Opening Clinic 2bShine — Intimate Brand Experience",
       url: window.location.href
     };
 
@@ -458,6 +458,26 @@ function setupScrollTop(){
 }
 
 // ==========================
+// Smooth anchor links fallback
+// ==========================
+function setupSmoothScrollLinks(){
+  // handle same-page anchor clicks for browsers that don't support CSS smooth scrolling
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    const target = document.querySelector(href);
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      // update history without jumping
+      try{ history.pushState(null, '', href); }catch{}
+    }
+  });
+}
+
+// ==========================
 // Init
 // ==========================
 setEventTexts();
@@ -470,4 +490,5 @@ setupMusic();
 setupModal();
 setupRsvp();
 setupScrollTop();
+setupSmoothScrollLinks();
 initQR();
