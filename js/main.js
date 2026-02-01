@@ -273,7 +273,7 @@ function setupMusic(){
 
   async function attemptAutoplay(){
     if(!audio || (!audio.src && audio.children.length === 0)){
-      showToast("Tambahkan file audio di assets/audio/music.mp3 di folder assets/audio/.");
+      showToast("Tambahkan file audio di assets/audio/bgm.mp3 di folder assets/audio/.");
       return false;
     }
 
@@ -336,7 +336,7 @@ function setupMusic(){
   // button behaviour
   btn.addEventListener("click", async () => {
     if(!audio || (!audio.src && audio.children.length === 0)){
-      showToast("Tambahkan file audio di assets/audio/music.mp3 di folder assets/audio/.");
+      showToast("Tambahkan file audio di assets/audio/bgm.mp3 di folder assets/audio/.");
       return;
     }
     if(audio.paused){

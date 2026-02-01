@@ -6,7 +6,7 @@
 - `checkin.html` — Halaman panitia: scan QR (kamera) + manual check-in
 - CSS: `css/style.css` (base), `css/vip.css` (VIP overrides)
 - JS: `js/main.js` (core), `js/checkin.js` (scanner), `js/config.js`, `js/config-vip.js` (event config)
-- `assets/audio/` — tempat letak file audio untuk background music (contoh: `music.mp3`)
+- `assets/audio/` — tempat letak file audio untuk background music (contoh: `bgm.mp3`)
 - `apps-script/Code.gs` — Google Apps Script untuk integrasi Google Sheet
 
 ---
@@ -38,7 +38,7 @@
 ---
 
 ## Background music (autoplay & fallback)
-- Tambahkan file audio di `assets/audio/music.mp3` (rekomendasi 30–120 detik, mp3).
+- Tambahkan file audio di `assets/audio/bgm.mp3` (rekomendasi 30–120 detik, mp3).
 - `vip.html` sudah menautkan `<audio id="bgm" loop autoplay>`; `js/main.js` mencoba autoplay otomatis dan:
   - Jika browser mengizinkan: play muted → lalu coba unmute dan ramp volume secara perlahan.
   - Jika diblokir: tampilan hint kecil (`Tap anywhere untuk mengaktifkan suara`) dan listener `pointerdown` akan mencoba mengaktifkan audio saat pengguna menyentuh layar.
@@ -64,14 +64,14 @@
 ## Troubleshooting cepat
 - API_URL error: Pastikan `js/config.js` / `js/config-vip.js` sudah diisi dan Apps Script telah dideploy.
 - Scanner tidak bisa akses kamera: butuh HTTPS; tes di desktop dengan webcam atau deploy ke hosting.
-- Autoplay tidak jalan: tambahkan `assets/audio/music.mp3`, reload, lalu tap layar jika perlu.
+- Autoplay tidak jalan: tambahkan `assets/audio/bgm.mp3`, reload, lalu tap layar jika perlu.
 - QR generator gagal: pastikan CDN `qrcodejs` ada di HTML (sudah disertakan di semua halaman).
 
 ---
 
 ## Tips pengembangan
 - Ubah style spesifik VIP di `css/vip.css` (override variabel/warna dari `style.css`).
-- Untuk preview audio lokal, tambahkan `assets/audio/music.mp3` dan buka `vip.html` di browser.
+- Untuk preview audio lokal, tambahkan `assets/audio/bgm.mp3` dan buka `vip.html` di browser.
 
 ---
 
